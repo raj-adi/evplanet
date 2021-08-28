@@ -3,26 +3,23 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var dotenv = require('dotenv');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+dotenv.config();
+
 var app = express();
+ 
 
-const mysql = require('mysql');
 
-// const db = mysql.createConnection({
-//     host: "localhost",
-//     user: "root",
-//     password : "&!W$jDMp5K?Nqyf&",
-//     database : "dbEVPlanet"
-// })
-// //Check Database Connection
-// db.connect((err) => {
-//   if (err) throw err;
-//   console.log('Connected!');
+
+// mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/dbEVPlanet',{
+//   useNewUrlParser : true,
+//   useUnifiedTopology : true,
+//   useCreateIndex : true
 // });
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
