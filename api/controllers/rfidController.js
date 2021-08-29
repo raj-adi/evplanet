@@ -3,6 +3,19 @@ const ev_rfid = require('../models').ev_rfid;
 const { Op } = require("sequelize");
 
 module.exports = {
+  get(req,res) {
+    return ev_rfid
+    .findAll({
+      attributes: [
+        'rfId', 
+        'isActive',
+        'inUse'
+      ]
+    })
+    .then((ev_rfid) => res.status(200).send(ev_rfid))
+    .catch((error) => res.status(201).send(error));
+
+  },
   add(req, res) {
     return ev_rfid
       .create({

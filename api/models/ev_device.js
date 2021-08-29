@@ -14,8 +14,14 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   ev_device.init({
-    deviceAddress: DataTypes.STRING,
+    deviceId: DataTypes.STRING,
     deviceCategory: DataTypes.STRING,
+    deviceAddress1: DataTypes.STRING,
+    deviceAddress2: DataTypes.STRING,
+    deviceAddressLandmark: DataTypes.STRING,
+    deviceCity: DataTypes.STRING,
+    deviceState: DataTypes.STRING,
+    deviceCountry: DataTypes.STRING,
     isActive: DataTypes.TINYINT,
     inUse: DataTypes.TINYINT,
   }, {

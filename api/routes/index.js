@@ -34,17 +34,20 @@ router.get('/', function (req, res, next) {
 
 
 /* Users Router */
+router.get('/api/users', userController.get);
 router.post('/api/users/signin',userController.signin);
 router.post('/api/users/add', userController.add);
 
 // RFID Router
-router.post('/api/rfid', rfidController.add);
+router.get('/api/rfid', rfidController.get);
+router.post('/api/rfid/add', rfidController.add);
 router.post('/api/rfidstatus', rfidController.getRfidStatus);
 
 
 // Device Router
-router.post('/api/device', deviceController.add);
-router.post('/api/devicestatus', deviceController.getDeviceStatus);
+router.get('/api/device', deviceController.get);
+router.post('/api/device/add', deviceController.add);
+router.post('/api/device/status', deviceController.getDeviceStatus);
 
 //Charge Router
 router.post('/api/intiatecharge', chargeController.initializeCharge);

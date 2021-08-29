@@ -8,10 +8,33 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      deviceAddress: {
+      deviceId: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       deviceCategory: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      deviceAddress1: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      deviceAddress2: {
+        type: Sequelize.STRING
+      },
+      deviceAddressLandmark: {
+        type: Sequelize.STRING
+      },
+      deviceCity:  {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      deviceState:  {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      deviceCountry: {
         allowNull: false,
         type: Sequelize.STRING
       },
