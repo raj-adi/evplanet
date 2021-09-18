@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   ev_charge.init({
     rfId: DataTypes.STRING,
-    deviceId: DataTypes.INTEGER,
+    deviceId: DataTypes.STRING,
     sessionToken: DataTypes.STRING,
     chargeStart: DataTypes.DATE,
     chargeEnd: DataTypes.DATE,

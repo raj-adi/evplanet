@@ -28,3 +28,28 @@ code {
   color: red;
   background-color: white;
 }
+
+.formBackgroud {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important; 
+  background-color: rgba(0,0,0,.2) !important;
+}
+
+.bg-dark {
+  background-color: #23212969!important;
+}
+
+.card {
+  background: rgba(0,0,0,0.24) !important;
+  color: rgba(244,244,245,0.6) !important;
+  border-radius: .625rem !important;
+  box-shadow: 0 25px 20px -20px rgb(0 0 0 / 10%), 0 0 15px rgb(0 0 0 / 6%) !important;
+}
+
+.formContent {
+  color: rgba(244,244,245,0.901961);
+  font-weight: 300;
+}
+
+.right-float{
+  float: right !important;
+}

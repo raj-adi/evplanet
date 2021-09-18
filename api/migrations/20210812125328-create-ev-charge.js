@@ -13,7 +13,7 @@ module.exports = {
         allowNull: false
       },
       deviceId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       sessionToken: {

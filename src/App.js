@@ -1,16 +1,11 @@
-import BrowserRouter from 'react-router-dom/BrowserRouter';
+import { BrowserRouter } from 'react-router-dom';
 import { Route } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom'
 
 //Import Actions
 import { signout } from './actions/userActions';
-
-//Import Bootstrap Components
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 
 //Import Home Screens
 import HomeScreen from './screens/HomeScreen';
@@ -44,87 +39,167 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <header className="App-header">
-          <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-            <Container>
-              <Navbar.Brand as={Link} to="/">EV PLANET</Navbar.Brand>
-              <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-              <Navbar.Collapse id="responsive-navbar-nav">
+        <header class="topbar-nav">
 
-                {userInfo && userInfo.isAdmin ? (
-                  <Nav className="me-auto">
-                    <Nav.Link as={Link} to="/adminDashboard">Dashboard</Nav.Link>
-                    <Nav.Link as={Link} to="/adminDevice">Devices</Nav.Link>
-                    <Nav.Link as={Link} to="/adminRFID">RFID</Nav.Link>
-                    <Nav.Link as={Link} to="/adminPayment">Payment</Nav.Link>
-                  </Nav>
+          <nav class="navbar navbar-expand fixed-top">
 
-                )
-                  : userInfo ?
-                    (
-                      <Nav className="me-auto">
-                        <Nav.Link as={Link} to="/userDashboard">Dashboard</Nav.Link>
-                        <Nav.Link as={Link} to="/userBilling">Billing</Nav.Link>
-                        <Nav.Link as={Link} to="/userPayment">Payment</Nav.Link>
-                      </Nav>
-                    )
-                    : (
-                      <Nav className="me-auto">
-                        <Nav.Link as={Link} to="/">Home</Nav.Link>
-                        <Nav.Link as={Link} to="/vision">Our Vision</Nav.Link>
-                        <Nav.Link as={Link} to="/about">About Us</Nav.Link>
-                        <Nav.Link as={Link} to="/contact">Contact Us</Nav.Link>
-                      </Nav>
-                    )}
+            {userInfo && userInfo.isAdmin ? (
+              <ul class="navbar-nav mr-auto align-items-center">
+                <li class="nav-item">
+                  <Link class="nav-link toggle-menu" to="/adminDashboard">Dashboard</Link>
+                </li>
+                <li class="nav-item">
+                  <Link class="nav-link toggle-menu" to="/adminDevice">Devices</Link>
+                </li>
+                <li class="nav-item">
+                  <Link class="nav-link toggle-menu" to="/adminRFID">RFID</Link>
+                </li>
+                <li class="nav-item">
+                  <Link class="nav-link toggle-menu" to="/adminPayment">Payment</Link>
+                </li>
+              </ul>
+            ) : userInfo ? (
+              <ul class="navbar-nav mr-auto align-items-center">
+                <li class="nav-item">
+                  <Link class="nav-link toggle-menu" to="/userDashboard">Dashboard</Link>
+                </li>
+                <li class="nav-item">
+                  <Link class="nav-link toggle-menu" to="/userBilling">Billing</Link>
+                </li>
+                <li class="nav-item">
+                  <Link class="nav-link toggle-menu" to="/userPayment">Payment</Link>
+                </li>
+              </ul>
 
-                <Nav>
-                  {
-                    userInfo ? (
-                      <Nav.Link as={Link} to="#">{userInfo.userName}</Nav.Link>
-                    ) :
-                      (
-                        <Nav.Link as={Link} to="/signin">Sign In</Nav.Link>
-                      )
-                  }
-                </Nav>
-                <Nav>
-                  {userInfo && userInfo.isAdmin ? (
-                    <NavDropdown title="" id="collasible-nav-dropdown">
-                      <NavDropdown.Item as={Link} to="/adminProfile">Admin Profile</NavDropdown.Item>
-                      <NavDropdown.Divider />
-                      <NavDropdown.Item to="#signout" onClick={signOutHandler}>Sign Out</NavDropdown.Item>
-                    </NavDropdown>
-                  ) : userInfo ? (
-                    <NavDropdown title="" id="collasible-nav-dropdown">
-                      <NavDropdown.Item as={Link} to="/userProfile">My Profile</NavDropdown.Item>
-                      <NavDropdown.Divider />
-                      <NavDropdown.Item to="#signout" onClick={signOutHandler}>Sign Out</NavDropdown.Item>
-                    </NavDropdown>
-                  ) :
-                    (
-                      <h1></h1>
-                    )
-                  }
+            ) : (
+              <ul class="navbar-nav mr-auto align-items-center">
+                <li class="nav-item">
+                  <Link class="nav-link toggle-menu" to="/">Home</Link>
+                </li>
+                <li class="nav-item">
+                  <Link class="nav-link toggle-menu" to="/vision">Our Vision</Link>
+                </li>
+                <li class="nav-item">
+                  <Link class="nav-link toggle-menu" to="/about">About Us</Link>
+                </li>
+                <li class="nav-item">
+                  <Link class="nav-link toggle-menu" to="/contact">Contact</Link>
+                </li>
+              </ul>
+            )}
 
-                </Nav>
-              </Navbar.Collapse>
-            </Container>
-          </Navbar>
+            {userInfo && userInfo.isAdmin ? (
+              <ul class="navbar-nav align-items-center right-nav-link">
+                <li class="nav-item dropdown-lg">
+                  <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();">
+                    Welcome {userInfo.userName}
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
+                    <span class="user-profile"><img src="https://via.placeholder.com/110x110" class="img-circle" alt="user avatar" /></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li class="dropdown-item user-details">
+                      <a href="javaScript:void();">
+                        <div class="media">
+                          <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110x110" alt="user avatar" /></div>
+                          <div class="media-body">
+                            <h6 class="mt-2 user-title">{userInfo.userName}</h6>
+                            <p class="user-subtitle">{userInfo.userEmail}</p>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li class="dropdown-divider"></li>
+                    <li class="dropdown-item">
+                      <i class="icon-envelope mr-2"></i>
+                      <Link to="#signout">Our Vision</Link>
+                    </li>
+                    <li class="dropdown-divider"></li>
+                    <li class="dropdown-item"><i class="icon-wallet mr-2"></i>
+                      <Link to="/adminProfile">My Profile</Link>
+                    </li>
+                    {/* <li class="dropdown-divider"></li>
+                  <li class="dropdown-item"><i class="icon-settings mr-2"></i> Setting</li> */}
+                    <li class="dropdown-divider"></li>
+                    <li class="dropdown-item">
+                      <i class="icon-power mr-2"></i>
+                      <Link to="#signout" onClick={signOutHandler}>Logout</Link>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            ) : userInfo ? (
+
+              <ul class="navbar-nav align-items-center right-nav-link">
+                <li class="nav-item dropdown-lg">
+                  <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();">
+                    Welcome {userInfo.userName}
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
+                    <span class="user-profile"><img src="https://via.placeholder.com/110x110" class="img-circle" alt="user avatar" /></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li class="dropdown-item user-details">
+                      <a href="javaScript:void();">
+                        <div class="media">
+                          <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110x110" alt="user avatar" /></div>
+                          <div class="media-body">
+                            <h6 class="mt-2 user-title">{userInfo.userName}</h6>
+                            <p class="user-subtitle">{userInfo.userEmail}</p>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li class="dropdown-divider"></li>
+                    <li class="dropdown-item">
+                      <i class="icon-envelope mr-2"></i>
+                      <Link to="#signout">Our Vision</Link>
+                    </li>
+                    <li class="dropdown-divider"></li>
+                    <li class="dropdown-item"><i class="icon-wallet mr-2"></i>
+                      <Link to="/adminProfile">My Profile</Link>
+                    </li>
+                    {/* <li class="dropdown-divider"></li>
+                  <li class="dropdown-item"><i class="icon-settings mr-2"></i> Setting</li> */}
+                    <li class="dropdown-divider"></li>
+                    <li class="dropdown-item">
+                      <i class="icon-power mr-2"></i>
+                      <Link to="#signout" onClick={signOutHandler}>Logout</Link>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+
+            ) : (
+              <ul class="navbar-nav align-items-center right-nav-link">
+                <li class="nav-item dropdown-lg">
+                  <Link to="/signin">Sign In</Link>
+                </li>
+              </ul>
+            )}
+          </nav>
+
         </header>
-        <Route path="/" component={HomeScreen} exact></Route>
-        <Route path="/signin" component={SigninScreen}></Route>
+        <div id="wrapper">
+          <Route path="/" component={HomeScreen} exact></Route>
+          <Route path="/signin" component={SigninScreen}></Route>
 
 
-        {/* Admin Routes */}
-        <AdminRoute path="/adminDashboard" component={adminDashboard} exact></AdminRoute>
-        <AdminRoute path="/adminDevice" component={adminDevice} exact></AdminRoute>
-        <AdminRoute path="/adminPayment" component={adminPayment} exact></AdminRoute>
-        <AdminRoute path="/adminRFID" component={adminRFID} exact></AdminRoute>
+          {/* Admin Routes */}
+          <AdminRoute path="/adminDashboard" component={adminDashboard}></AdminRoute>
+          <AdminRoute path="/adminDevice" component={adminDevice}></AdminRoute>
+          <AdminRoute path="/adminPayment" component={adminPayment}></AdminRoute>
+          <AdminRoute path="/adminRFID" component={adminRFID}></AdminRoute>
 
-        {/* User Routes */}
-        <UserRoute path="/userDashboard" component={userDashboard} exact></UserRoute>
-        <UserRoute path="/userBilling" component={userBilling} exact></UserRoute>
-        <UserRoute path="/userPayment" component={userPayment} exact></UserRoute>
+          {/* User Routes */}
+          <UserRoute path="/userDashboard" component={userDashboard} exact></UserRoute>
+          <UserRoute path="/userBilling" component={userBilling} exact></UserRoute>
+          <UserRoute path="/userPayment" component={userPayment} exact></UserRoute>
+        </div>
       </div>
     </BrowserRouter>
   );

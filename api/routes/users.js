@@ -5,7 +5,7 @@ var bcrypt = require('bcryptjs');
 
 
 //Utility Functions
-var generateToken = require('../utils/utils.js');
+var generateToken = require('../utils/generateToken.js');
 
 //User Model
 const models = require('../models');

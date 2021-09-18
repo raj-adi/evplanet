@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Card, Col, Container, Form, Row } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { signin } from '../actions/userActions';
 
@@ -38,63 +36,68 @@ export default function SigninScreen(props) {
         dispatch(signin(userEmail, userPassword));
     };
 
-
-
     useEffect(() => {
-        if (userInfo) {
-            props.history.push(redirect);
+        if (userInfo && userInfo.isAdmin)  {
+            props.history.push('/adminDashboard');
+        } else if (userInfo){
+            props.history.push('/userDashboard');
         }
     }, [props.history, redirect, userInfo]);
 
     return (
         <div>
-            <Container fluid="md">
-                <Row>
-                    <Col md={{ span: 6, offset: 3 }}>
-                        <br>
-                        </br>
-
-                        <Card body>
-                            <Form onSubmit={submitHandler}>
-                                <Form.Group className="mb-3">
-                                    <Form.Label>Email address</Form.Label>
-                                    <Form.Control type="email"
+            <div class="card card-authentication1 mx-auto my-5 formBackgroud">
+                <div class="card-body">
+                    <div class="card-content p-2">
+                        <div class="text-center">
+                            <img src="assets/images/logo-icon.png" alt="logo icon" />
+                        </div>
+                        <div class="card-title text-uppercase text-center py-3">Sign In</div>
+                        <form onSubmit={submitHandler}>
+                            <div class="form-group">
+                                <label for="exampleInputEmail" class="sr-only">Email</label>
+                                <div class="position-relative has-icon-right">
+                                    <input id="userEmail"
+                                        class="form-control input-shadow"
+                                        type="email"
                                         placeholder="Enter email"
-                                        id="userEmail"
                                         onChange={(e) => setEmail(e.target.value)}
-                                        required
-                                    />
-                                    {/* <Form.Text className="text-muted">
-                                    We'll never share your email with anyone else.
-                                </Form.Text> */}
-                                </Form.Group>
-                                <Form.Group className="mb-3">
-                                    <Form.Label>Password</Form.Label>
-                                    <Form.Control type="password"
+                                        required />
+                                    <div class="form-control-position">
+                                        <i class="icon-user"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword" class="sr-only">Password</label>
+                                <div class="position-relative has-icon-right">
+                                    <input class="form-control input-shadow"
+                                        type="password"
                                         placeholder="Enter password"
                                         id="userPassword"
                                         onChange={(e) => setPassword(e.target.value)}
-                                        required
-                                    />
-                                </Form.Group>
-                                {
-                                    error ? (
-                                        <Form.Text className="alert-danger">
-                                            Incorrect Password.<br></br>
-                                        </Form.Text>
-                                    ) : (
-                                        <h1></h1>
-                                    )
-                                }
-                                <Button variant="primary" type="submit">
-                                    Sign In
-                                </Button>
-                            </Form>
-                        </Card>
-                        
-                    </Col>
-                </Row>
-            </Container>
-        </div >
+                                        required />
+                                    <div class="form-control-position">
+                                        <i class="icon-lock"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-6 text-left">
+                                    <a href="reset-password.html"></a>
+                                </div>
+                                <div class="form-group col-6 text-right">
+                                    <a href="reset-password.html"></a>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-light btn-block" >Sign In</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="card-footer text-center py-3">
+                    <p class="text-warning mb-0">Do not have an account? <a href="register.html"> Sign Up here</a></p>
+                </div>
+            </div>
+        </div > 
     );
 };

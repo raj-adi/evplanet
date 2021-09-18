@@ -3,7 +3,8 @@ const { Op } = require("sequelize");
 
 //Utility Functions
 var bcrypt = require('bcryptjs');
-var generateToken = require('../utils/utils.js');
+
+var generateToken = require('../utils/generateToken.js');
 
 module.exports = {
   get(req, res) {
@@ -56,7 +57,7 @@ module.exports = {
         if (bcrypt.compareSync(req.body.userPassword, ev_user[0].dataValues.userPassword)) {
           console.log(ev_user[0].dataValues.userPassword);
           res.status(200).send({
-            _id: ev_user[0].dataValues.id,
+            id: ev_user[0].dataValues.id,
             userName: ev_user[0].dataValues.userName,
             userEmail: ev_user[0].dataValues.userEmail,
             isAdmin: ev_user[0].dataValues.isAdmin,

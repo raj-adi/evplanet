@@ -1,7 +1,7 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk from "redux-thunk";
 import { billingMineListReducer } from "./reducers/billingReducers";
-import { deviceListReducer } from "./reducers/deviceReducers";
+import { deviceCreateReducer, deviceListReducer } from "./reducers/deviceReducers";
 import { userListReducer, userSigninReducer } from './reducers/userReducers';
 
 const initialState = {
@@ -14,6 +14,7 @@ const reducer = combineReducers ({
     billingMineList: billingMineListReducer,
     userList: userListReducer,
     deviceList: deviceListReducer,
+    deviceCreate: deviceCreateReducer
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
