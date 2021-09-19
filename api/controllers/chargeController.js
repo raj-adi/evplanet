@@ -65,36 +65,36 @@ module.exports = {
                             Message: error
                           }));
                       } else {
-                        res.status(200).send({
+                        res.status(400).send({
                           Message: "Device Inactive/Inuse"
                         });
                       };
 
                     } else {
-                      res.status(200).send({
+                      res.status(400).send({
                         Message: "Device Not Found"
                       });
                     };
                   }
                   // If Device ID is not found
-                  res.status(200).send({
+                  res.status(400).send({
                     Message: "Device Invalid"
                   });
                 })
                 .catch((error) => res.status(400).send(error));
             } else {
-              res.status(200).send({
+              res.status(400).send({
                 Message: "RFID Invalid or Inactive"
               })
             }
           } else {
-            res.status(200).send({
+            res.status(400).send({
               Message: "RFID Inactive"
             })
           }
         }
         // If RFID is not found or Inactive
-        res.status(200).send({
+        res.status(400).send({
           Message: "RFID Invalid"
         });
       })
