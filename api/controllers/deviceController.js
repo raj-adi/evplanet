@@ -30,7 +30,7 @@ module.exports = {
         deviceCategory: req.body.deviceCategory,
         deviceAddress1: req.body.deviceAddress1,
         deviceAddress2: req.body.deviceAddress2,
-        deviceAddressLandmark: req.body.deviceAddressLandmark,
+        deviceAddressLandmark: req.body.deviceAddressLandmark, 
         deviceCity: req.body.deviceCity,
         deviceState: req.body.deviceState,
         deviceCountry: req.body.deviceCountry,
