@@ -22,7 +22,6 @@ module.exports = {
         }
       })
       .then(async function (ev_rfid) {
-        console.log(ev_rfid);
         for (var i = 0; i < ev_rfid.length; i++) {
           if (ev_rfid[i].dataValues.id != null) {
             var rfId = ev_rfid[i].dataValues.rfId;
@@ -66,36 +65,36 @@ module.exports = {
                             Message: error
                           }));
                       } else {
-                        res.status(400).send({
+                        res.status(200).send({
                           Message: "Device Inactive/Inuse"
                         });
                       };
 
                     } else {
-                      res.status(400).send({
+                      res.status(200).send({
                         Message: "Device Not Found"
                       });
                     };
                   }
                   // If Device ID is not found
-                  res.status(400).send({
+                  res.status(200).send({
                     Message: "Device Invalid"
                   });
                 })
                 .catch((error) => res.status(400).send(error));
             } else {
-              res.status(400).send({
+              res.status(200).send({
                 Message: "RFID Invalid or Inactive"
               })
             }
           } else {
-            res.status(400).send({
+            res.status(200).send({
               Message: "RFID Inactive"
             })
           }
         }
         // If RFID is not found or Inactive
-        res.status(400).send({
+        res.status(200).send({
           Message: "RFID Invalid"
         });
       })
