@@ -22,6 +22,7 @@ module.exports = {
         }
       })
       .then(async function (ev_rfid) {
+        console.log(ev_rfid);
         for (var i = 0; i < ev_rfid.length; i++) {
           if (ev_rfid[i].dataValues.id != null) {
             var rfId = ev_rfid[i].dataValues.rfId;
