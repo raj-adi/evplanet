@@ -31,10 +31,15 @@ router.post('/api/rfidstatus', rfidController.getRfidStatus);
 
 
 // Device Router
-router.post('/api/device', isAuth, isAdmin, deviceController.get);
-router.post('/api/device/add',isAuth, isAdmin, deviceController.add);
-router.put('/api/device/update/:id',isAuth, isAdmin, deviceController.update);
+router.post('/api/device', deviceController.get);
+router.post('/api/device/add', deviceController.add);
+router.put('/api/device/update/:id', deviceController.update);
 router.post('/api/device/status', deviceController.getDeviceStatus);
+
+// router.post('/api/device', isAuth, isAdmin, deviceController.get);
+// router.post('/api/device/add',isAuth, isAdmin, deviceController.add);
+// router.put('/api/device/update/:id',isAuth, isAdmin, deviceController.update);
+// router.post('/api/device/status', deviceController.getDeviceStatus);
 
 //Charge Router
 router.post('/api/intiatecharge', chargeController.initializeCharge);
