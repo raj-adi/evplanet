@@ -14,7 +14,7 @@ const chargeController = require('../controllers').ev_charge;
 
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
+router.post('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
